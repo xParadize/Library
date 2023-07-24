@@ -1,7 +1,7 @@
 package com.example.Project2Boot.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDate;

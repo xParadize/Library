@@ -9,11 +9,15 @@
     <br>
     <div th:each = "person : ${people}">
         <a th:href = "@{/people/{id} (id = ${person.getId()})}"
-           th:text = "${person.getName() + ', ' + person.getAge()}"></a>
+           th:text = "${person.getUsername() + ', ' + person.getAge()}"></a>
     </div>
     <br>
     <hr>
     <button><a style="text-decoration: none" href="/people/new">Добавить человека</a></button>
+
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="Выйти из аккаунта">
+    </form>
 
 </body>
 </html>

@@ -4,8 +4,9 @@ import com.example.Project2Boot.model.Book;
 import com.example.Project2Boot.model.Person;
 import com.example.Project2Boot.repositories.BooksRepository;
 import com.example.Project2Boot.repositories.PeopleRepository;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -20,11 +21,13 @@ public class PeopleService {
 
     private final PeopleRepository peopleRepository;
     private final BooksRepository booksRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public PeopleService(PeopleRepository peopleRepository, BooksRepository booksRepository) {
+    public PeopleService(PeopleRepository peopleRepository, BooksRepository booksRepository, PasswordEncoder passwordEncoder) {
         this.peopleRepository = peopleRepository;
         this.booksRepository = booksRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Показ всех людей на /people
@@ -38,15 +41,24 @@ public class PeopleService {
         return person.orElse(null);
     }
 
+    // Регистрация в системе (для админов)
+    @Transactional
+    public void register(Person person) {
+        person.setPassword(passwordEncoder.encode(person.getPassword()));
+        person.setRole("ROLE_CUSTOMER");
+        peopleRepository.save(person);
+    }
+
     // Создание человека (сервис)
     @Transactional
-    public void createPerson(@Valid Person createdPerson) {
+    public void createPerson(Person createdPerson) {
+        createdPerson.setRole("ROLE_CUSTOMER");
         peopleRepository.save(createdPerson);
     }
 
     // Изменение данных о человеке (сервис)
     @Transactional
-    public void updatePerson(int id, @Valid Person updatedPerson) {
+    public void updatePerson(int id, Person updatedPerson) {
         updatedPerson.setId(id);
         peopleRepository.save(updatedPerson);
     }

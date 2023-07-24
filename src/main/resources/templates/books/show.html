@@ -10,7 +10,7 @@
 
     <div th:if="${hasOwner}">
         <br>
-        <span>Эта книга сейчас у </span> <span th:text="${hasOwner.getName}"
+        <span>Эта книга сейчас у </span> <span th:text="${hasOwner.username}"
                                                th:href="@{/people/{id} (id=${hasOwner.getId()})}"></span>
 
         <form th:method="PATCH" th:action="@{/books/{id}/refundBook (id = ${book.getId()})}">
@@ -26,7 +26,7 @@
         <form th:method="PATCH" th:action="@{/books/{id}/appointBook (id = ${book.getId()})}">
             <label for="person">Выберите человека: </label>
             <select th:object="${person}" th:field="*{id}" id="person">
-                <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}"></option>
+                <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getUsername()}"></option>
             </select>
 
             <input type="submit" value="Назначить книгу">

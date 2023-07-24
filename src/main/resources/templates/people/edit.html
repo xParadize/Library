@@ -7,9 +7,9 @@
 <body>
 
     <form th:method="PATCH" th:action="@{/people/{id} (id=${person.getId()})}" th:object="${person}">
-        <label for="name">Введите новое имя человека: </label>
-        <input type="text" th:field="*{name}" id="name"/>
-        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <label for="username">Введите новое имя человека: </label>
+        <input type="text" th:field="*{username}" id="username"/>
+        <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
         <br/>
         <label for="age">Введите новый возраст человека: </label>
         <input type="text" th:field="*{age}" id="age"/>

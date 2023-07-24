@@ -7,7 +7,7 @@
 <body>
 
     <b>Пользователь: </b>
-    <td th:text="${person.getName() + ', ' + person.getAge()}"></td>
+    <td th:text="${person.getUsername() + ', ' + person.getAge()}"></td>
 
     <div th:if="${!books.isEmpty()}">
         <br>

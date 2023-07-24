@@ -15,5 +15,8 @@
     <hr>
     <button><a style="text-decoration: none" href="/books/new">Добавить книгу</a></button>
 
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="Выйти из аккаунта">
+    </form>
 </body>
 </html>

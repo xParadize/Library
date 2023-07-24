@@ -3,7 +3,7 @@ package com.example.Project2Boot.services;
 import com.example.Project2Boot.model.Book;
 import com.example.Project2Boot.model.Person;
 import com.example.Project2Boot.repositories.BooksRepository;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -65,7 +65,7 @@ public class BooksService {
 
     // Назначение книги человеку (сервис)
     @Transactional
-    public void appointBook(int id, @Valid Person selectedPerson) {
+    public void appointBook(int id, Person selectedPerson) {
         booksRepository.appointBookById(selectedPerson, id);
 
         // Установит дату взятия книги

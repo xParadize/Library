@@ -5,7 +5,7 @@ import com.example.Project2Boot.model.Person;
 import com.example.Project2Boot.services.BooksService;
 import com.example.Project2Boot.services.PeopleService;
 import com.example.Project2Boot.util.BookValidator;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -158,8 +158,7 @@ public class BooksController {
     @PostMapping("/search")
     public String searchBookSubmit(@RequestParam(value = "first_letters") String letters,
                                    @ModelAttribute("book") Book book, Model model) {
-        List<Book> foundedBooks = booksService.findBooks(letters);
-        model.addAttribute("booksFounded", foundedBooks);
+        model.addAttribute("booksFounded", booksService.findBooks(letters));
         return "books/search";
     }
 }

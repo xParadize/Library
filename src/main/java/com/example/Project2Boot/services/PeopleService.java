@@ -4,7 +4,6 @@ import com.example.Project2Boot.model.Book;
 import com.example.Project2Boot.model.Person;
 import com.example.Project2Boot.repositories.BooksRepository;
 import com.example.Project2Boot.repositories.PeopleRepository;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
